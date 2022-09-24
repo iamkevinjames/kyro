@@ -8,12 +8,12 @@ const userRouter = require("./routes/userData");
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(url, { useNewUrlParser: true });
-const con = mongoose.connection;
+// mongoose.connect(url, { useNewUrlParser: true });
+// const con = mongoose.connection;
 
-con.on("open", () => {
-  console.log("Connected...");
-});
+// con.on("open", () => {
+//   console.log("Connected...");
+// });
 
 app.use("/userData", userRouter);
 
