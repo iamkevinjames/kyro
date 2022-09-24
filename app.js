@@ -4,11 +4,6 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const data = {
-  firstName: "Vladimir",
-  lastName: "Putin",
-  emailAddress: "vladmirputin@gmail.com",
-};
 
 app.use(cors());
 app.use(bodyParser.json());
