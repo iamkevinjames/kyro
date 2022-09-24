@@ -1,25 +1,30 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
 const cors = require("cors");
-const url = "mongodb://localhost/userData";
-const userRouter = require("./routes/userData");
+const bodyParser = require("body-parser");
 
-app.use(express.json());
+const app = express();
+
+const data = {
+  firstName: "Vladimir",
+  lastName: "Putin",
+  emailAddress: "vladmirputin@gmail.com",
+};
+
 app.use(cors());
+app.use(bodyParser.json());
 
-// mongoose.connect(url, { useNewUrlParser: true });
-// const con = mongoose.connection;
-
-// con.on("open", () => {
-//   console.log("Connected...");
-// });
-
-app.use("/userData", userRouter);
-
-app.get("/", (req, res) => {
-  res.send("You are almost there!");
+app.get("/getData", (req, res) => {
+  res.send(data);
 });
 
-const port = process.env.PORT || "5000";
-app.listen(port, () => console.log(`Server started on Port ${port}`));
+app.post("/postData", (req, res) => {
+  data.firstName = req.body.firstName;
+  data.lastName = req.body.lastName;
+  data.emailAddress = req.body.emailAddress;
+  console.log(req.body);
+  res.send("User Data updated successfully!");
+});
+
+app.listen(8000, () => {
+  console.log("API Server is running...");
+});
